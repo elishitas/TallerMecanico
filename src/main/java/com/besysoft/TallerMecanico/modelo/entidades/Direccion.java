@@ -1,90 +1,36 @@
 package com.besysoft.TallerMecanico.modelo.entidades;
 
-import java.io.Serializable;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
+import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@MappedSuperclass
 public class Direccion implements Serializable {
 
+    @Column(length = 255, name = "calle", nullable = false)
     private String calle;
 
+    @Column(length = 255, name = "codigo_postal", nullable = false)
     private String codigoPostal;
 
+    @Column(length = 255, name = "departamento", nullable = false)
     private String departamento;
 
+    @Column(length = 255, name = "localidad", nullable = false)
     private String localidad;
 
+    @Column(length = 255, name = "numero", nullable = false)
     private String numero;
 
+    @Column(length = 255, name = "piso", nullable = false)
     private String piso;
 
-    public Direccion() {
-    }
-
-    public Direccion(String calle, String codigoPostal, String departamento, String localidad, String numero, String piso) {
-        this.calle = calle;
-        this.codigoPostal = codigoPostal;
-        this.departamento = departamento;
-        this.localidad = localidad;
-        this.numero = numero;
-        this.piso = piso;
-    }
-
-    public String getCalle() {
-        return calle;
-    }
-
-    public void setCalle(String calle) {
-        this.calle = calle;
-    }
-
-    public String getCodigoPostal() {
-        return codigoPostal;
-    }
-
-    public void setCodigoPostal(String codigoPostal) {
-        this.codigoPostal = codigoPostal;
-    }
-
-    public String getDepartamento() {
-        return departamento;
-    }
-
-    public void setDepartamento(String departamento) {
-        this.departamento = departamento;
-    }
-
-    public String getLocalidad() {
-        return localidad;
-    }
-
-    public void setLocalidad(String localidad) {
-        this.localidad = localidad;
-    }
-
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
-    public String getPiso() {
-        return piso;
-    }
-
-    public void setPiso(String piso) {
-        this.piso = piso;
-    }
-
-    @Override
-    public String toString() {
-        return "Direccion{" +
-                "calle='" + calle + '\'' +
-                ", codigoPostal='" + codigoPostal + '\'' +
-                ", departamento='" + departamento + '\'' +
-                ", localidad='" + localidad + '\'' +
-                ", numero='" + numero + '\'' +
-                ", piso='" + piso + '\'' +
-                '}';
-    }
 }

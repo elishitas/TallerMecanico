@@ -1,56 +1,37 @@
 package com.besysoft.TallerMecanico.modelo.entidades;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Repuesto {
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@EqualsAndHashCode(callSuper=false)
+@Table(name = "repuestos")
+public class Repuesto implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
+    @Column(length = 255, name = "marca", nullable = false)
     private String marca;
 
+    @Column(length = 255, name = "modelo", nullable = false)
     private String modelo;
 
+    @Column(length = 255, name = "repuesto", nullable = false)
+    private String repuesto;
+
+    @Column(length = 255, name = "valor", nullable = false)
     private BigDecimal valor;
 
-    public Repuesto() {
-    }
-
-    public Repuesto(Integer id, String marca, String modelo, BigDecimal valor) {
-        this.id = id;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.valor = valor;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    public BigDecimal getValor() {
-        return valor;
-    }
-
-    public void setValor(BigDecimal valor) {
-        this.valor = valor;
-    }
 }

@@ -1,33 +1,24 @@
 package com.besysoft.TallerMecanico.modelo.entidades;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Table(name = "mecanicos")
 public class Mecanico extends Persona{
 
+    @Column(name = "activo", nullable = false)
     private Character activo;
 
+    @Column(length = 255, name = "especialidad", nullable = false)
     private String especialidad;
 
-    public Mecanico() {
-    }
-
-    public Mecanico(Integer id, String apellido, String celular, Direccion direccion, Character activo, String especialidad) {
-        super(id, apellido, celular, direccion);
-        this.activo = activo;
-        this.especialidad = especialidad;
-    }
-
-    public Character getActivo() {
-        return activo;
-    }
-
-    public void setActivo(Character activo) {
-        this.activo = activo;
-    }
-
-    public String getEspecialidad() {
-        return especialidad;
-    }
-
-    public void setEspecialidad(String especialidad) {
-        this.especialidad = especialidad;
-    }
 }

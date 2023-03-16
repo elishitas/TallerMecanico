@@ -1,146 +1,94 @@
 package com.besysoft.TallerMecanico.modelo.entidades;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+import org.springframework.boot.autoconfigure.web.WebProperties;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@EqualsAndHashCode(callSuper=false)
+@Table(name = "ordenes_trabajo")
 public class OrdenTrabajo implements Serializable {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
+    @Column(name = "cantidad_cuotas")
     private Integer cantidadCuotas;
 
+    @Column(name = "detalle_falla")
     private String detalleFalla;
 
+    @Column(name = "estado")
     private String estado;
 
+    @Column(name = "fecha_fin_reparacion")
     private LocalDateTime fechaFinReparacion;
 
+    @Column(name = "fecha_ingreso")
     private LocalDateTime fechaIngreso;
 
+    @Column(name = "fecha_pago")
     private LocalDateTime fechaPago;
 
+    @Column(name = "forma_pago")
     private String formaPago;
 
+    @Column(name = "importe_total")
     private BigDecimal importeTotal;
 
+    @Column(name = "kilometraje")
     private Integer kilometraje;
 
+    @Column(name = "nivel_combustible")
     private String nivelCombustible;
 
+    @Column(name = "tipo_tarjeta")
     private String tipoTarjeta;
+//ver aca! Tengo que usar enumerados
+    @ManyToOne
+    @JoinColumn(name = "administrativo_id")
+    private Empleado administrativo;
 
-    public OrdenTrabajo() {
-    }
+    @ManyToOne
+    @JoinColumn(name = "recepcionista_id")
+    private Empleado recepcionista;
 
-    public OrdenTrabajo(Integer id, Integer cantidadCuotas, String detalleFalla, String estado, LocalDateTime fechaFinReparacion, LocalDateTime fechaIngreso, LocalDateTime fechaPago, String formaPago, BigDecimal importeTotal, Integer kilometraje, String nivelCombustible, String tipoTarjeta) {
-        this.id = id;
-        this.cantidadCuotas = cantidadCuotas;
-        this.detalleFalla = detalleFalla;
-        this.estado = estado;
-        this.fechaFinReparacion = fechaFinReparacion;
-        this.fechaIngreso = fechaIngreso;
-        this.fechaPago = fechaPago;
-        this.formaPago = formaPago;
-        this.importeTotal = importeTotal;
-        this.kilometraje = kilometraje;
-        this.nivelCombustible = nivelCombustible;
-        this.tipoTarjeta = tipoTarjeta;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getCantidadCuotas() {
-        return cantidadCuotas;
-    }
-
-    public void setCantidadCuotas(Integer cantidadCuotas) {
-        this.cantidadCuotas = cantidadCuotas;
-    }
-
-    public String getDetalleFalla() {
-        return detalleFalla;
-    }
-
-    public void setDetalleFalla(String detalleFalla) {
-        this.detalleFalla = detalleFalla;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
+    @ManyToOne(
+            optional = true,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            }
+    )
+    @JoinColumn(
+            name = "vehiculo_id",
+            foreignKey = @ForeignKey(name = "FK_VEHICULO_ID")
+    )
+    private Vehiculo vehiculo;
 
     public LocalDateTime getFechaFinReparacion() {
         return fechaFinReparacion;
     }
 
-    public void setFechaFinReparacion(LocalDateTime fechaFinReparacion) {
-        this.fechaFinReparacion = fechaFinReparacion;
+    @PrePersist
+    private void antesDePersistir(){
+        this.fechaIngreso = LocalDateTime.now();
     }
 
-    public LocalDateTime getFechaIngreso() {
-        return fechaIngreso;
-    }
-
-    public void setFechaIngreso(LocalDateTime fechaIngreso) {
-        this.fechaIngreso = fechaIngreso;
-    }
-
-    public LocalDateTime getFechaPago() {
-        return fechaPago;
-    }
-
-    public void setFechaPago(LocalDateTime fechaPago) {
-        this.fechaPago = fechaPago;
-    }
-
-    public String getFormaPago() {
-        return formaPago;
-    }
-
-    public void setFormaPago(String formaPago) {
-        this.formaPago = formaPago;
-    }
-
-    public BigDecimal getImporteTotal() {
-        return importeTotal;
-    }
-
-    public void setImporteTotal(BigDecimal importeTotal) {
-        this.importeTotal = importeTotal;
-    }
-
-    public Integer getKilometraje() {
-        return kilometraje;
-    }
-
-    public void setKilometraje(Integer kilometraje) {
-        this.kilometraje = kilometraje;
-    }
-
-    public String getNivelCombustible() {
-        return nivelCombustible;
-    }
-
-    public void setNivelCombustible(String nivelCombustible) {
-        this.nivelCombustible = nivelCombustible;
-    }
-
-    public String getTipoTarjeta() {
-        return tipoTarjeta;
-    }
-
-    public void setTipoTarjeta(String tipoTarjeta) {
-        this.tipoTarjeta = tipoTarjeta;
+    @PreUpdate
+    private void antesDeUpdate(){
+        this.fechaFinReparacion = LocalDateTime.now();
     }
 }

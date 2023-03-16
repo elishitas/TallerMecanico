@@ -1,17 +1,30 @@
 package com.besysoft.TallerMecanico.modelo.entidades;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import java.util.List;
+
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@EqualsAndHashCode(callSuper=false)
+@Table(name = "clientes")
 public class Cliente extends Persona{
 
-    private String telefonoLinea;
-
+    @Column(length = 255, name = "correo_electronico", nullable = false)
     private String correoElectronico;
 
-    public Cliente() {
-    }
+    @Column(length = 15, name = "telefono_linea", nullable = false)
+    private String telefonoLinea;
 
-    public Cliente(Integer id, String apellido, String celular, Direccion direccion, String telefonoLinea, String correoElectronico) {
-        super(id, apellido, celular, direccion);
-        this.telefonoLinea = telefonoLinea;
-        this.correoElectronico = correoElectronico;
-    }
+    @ManyToMany(mappedBy = "clientes")
+    private List<Vehiculo> vehiculos;
 }

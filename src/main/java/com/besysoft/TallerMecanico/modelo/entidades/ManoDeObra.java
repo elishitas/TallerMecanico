@@ -1,34 +1,39 @@
 package com.besysoft.TallerMecanico.modelo.entidades;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.time.Duration;
 
-public class ManoDeObra {
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@EqualsAndHashCode(callSuper=false)
+@Table(name = "mano_obra")
+public class ManoDeObra implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
+    @Column(name = "detalle", nullable = false)
+    private String detalle;
+
+    @Column(name = "duracion_hs", nullable = false)
     private Duration duracionHs;
 
-    public ManoDeObra() {
-    }
+    @OneToOne
+    @JoinColumn(name = "mecanico_id", nullable = false)
+    private Mecanico mecanico;
 
-    public ManoDeObra(Integer id, Duration duracionHs) {
-        this.id = id;
-        this.duracionHs = duracionHs;
-    }
+    @OneToOne
+    @JoinColumn(name = "orden_trabajo_id", nullable = false)
+    private OrdenTrabajo ordenTrabajo;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Duration getDuracionHs() {
-        return duracionHs;
-    }
-
-    public void setDuracionHs(Duration duracionHs) {
-        this.duracionHs = duracionHs;
-    }
 }

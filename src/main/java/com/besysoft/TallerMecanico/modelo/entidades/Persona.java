@@ -1,80 +1,33 @@
 package com.besysoft.TallerMecanico.modelo.entidades;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@MappedSuperclass
 public abstract class Persona implements Serializable {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
+    @Column(length = 255, name = "apellido", nullable = false)
     private String apellido;
 
+    @Column(length = 15, name = "celular", nullable = false)
     private String celular;
 
+    @Embedded
     private Direccion direccion;
 
-    public Persona() {
-    }
+    @Column(length = 255, name = "nombres", nullable = false)
+    private String nombres;
 
-    public Persona(Integer id, String apellido, String celular, Direccion direccion) {
-        this.id = id;
-        this.apellido = apellido;
-        this.celular = celular;
-        this.direccion = direccion;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(String celular) {
-        this.celular = celular;
-    }
-
-    public Direccion getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(Direccion direccion) {
-        this.direccion = direccion;
-    }
-
-    @Override
-    public String toString() {
-        return "Persona{" +
-                "id=" + id +
-                ", apellido='" + apellido + '\'' +
-                ", celular='" + celular + '\'' +
-                ", direccion=" + direccion +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Persona persona = (Persona) o;
-        return id.equals(persona.id) && celular.equals(persona.celular);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, celular);
-    }
 }
