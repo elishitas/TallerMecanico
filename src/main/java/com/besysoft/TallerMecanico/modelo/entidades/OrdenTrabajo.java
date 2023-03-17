@@ -56,7 +56,7 @@ public class OrdenTrabajo implements Serializable {
 
     @Column(name = "tipo_tarjeta")
     private String tipoTarjeta;
-//ver aca! Tengo que usar enumerados
+
     @ManyToOne
     @JoinColumn(name = "administrativo_id")
     private Empleado administrativo;
@@ -65,11 +65,11 @@ public class OrdenTrabajo implements Serializable {
     @JoinColumn(name = "recepcionista_id")
     private Empleado recepcionista;
 
-    @ManyToOne(
-            optional = true,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
+   @ManyToOne(
+          optional = true,
+          cascade = {
+                  CascadeType.PERSIST,
+                  CascadeType.MERGE
             }
     )
     @JoinColumn(

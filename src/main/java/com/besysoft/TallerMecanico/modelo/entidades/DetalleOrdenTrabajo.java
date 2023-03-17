@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @EqualsAndHashCode(callSuper=false)
-@Table(name = "Detalle_ordenes_trabajo")
+@Table(name = "detalle_ordenes_trabajo")
 public class DetalleOrdenTrabajo implements Serializable {
 
     @Id
