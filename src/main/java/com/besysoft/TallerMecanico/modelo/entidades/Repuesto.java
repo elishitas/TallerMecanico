@@ -6,8 +6,11 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -32,6 +35,9 @@ public class Repuesto implements Serializable {
     private String repuesto;
 
     @Column(length = 255, name = "valor", nullable = false)
+    @Digits(integer = 17,fraction = 2)
     private BigDecimal valor;
 
+    @OneToMany(mappedBy = "repuesto")
+    private List<DetalleOrdenTrabajo> detalleOrdenTrabajos=new ArrayList<>();
 }

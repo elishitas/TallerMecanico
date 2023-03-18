@@ -1,5 +1,6 @@
 package com.besysoft.TallerMecanico.modelo.entidades;
 
+import com.besysoft.TallerMecanico.modelo.enumeradores.TipoOdenTrabajo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,6 +12,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -30,8 +32,8 @@ public class OrdenTrabajo implements Serializable {
     @Column(name = "detalle_falla")
     private String detalleFalla;
 
-    @Column(name = "estado")
-    private String estado;
+    @Enumerated(EnumType.STRING)
+    private TipoOdenTrabajo estado;
 
     @Column(name = "fecha_fin_reparacion")
     private LocalDateTime fechaFinReparacion;
@@ -65,22 +67,15 @@ public class OrdenTrabajo implements Serializable {
     @JoinColumn(name = "recepcionista_id")
     private Empleado recepcionista;
 
-   @ManyToOne(
-          optional = true,
-          cascade = {
-                  CascadeType.PERSIST,
-                  CascadeType.MERGE
-            }
-    )
-    @JoinColumn(
-            name = "vehiculo_id",
-            foreignKey = @ForeignKey(name = "FK_VEHICULO_ID")
-    )
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "vehiculo_id")
     private Vehiculo vehiculo;
 
-    public LocalDateTime getFechaFinReparacion() {
-        return fechaFinReparacion;
-    }
+    //@OneToMany(mappedBy = "ordenTrabajo")
+    //private List<ManoDeObra> manoDeObra;
+
+    //@OneToMany(mappedBy = "ordenTrabajo")
+    //private List<DetalleOrdenTrabajo> detalleOrdenesTrabajo;
 
     @PrePersist
     private void antesDePersistir(){

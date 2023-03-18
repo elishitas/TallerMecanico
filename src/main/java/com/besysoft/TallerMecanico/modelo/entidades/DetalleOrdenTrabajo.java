@@ -29,12 +29,12 @@ public class DetalleOrdenTrabajo implements Serializable {
     @Column(name = "valor_total", precision=19, scale=2)
     private BigDecimal valorTotal;
 
-
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "orden_trabajo_id")
     private OrdenTrabajo ordenTrabajo;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "repuesto_id")
-    private List<Repuesto> repuestos;
+    private Repuesto repuesto;
+
 }
