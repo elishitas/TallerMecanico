@@ -1,6 +1,6 @@
 package com.besysoft.TallerMecanico.modelo.entidades;
 
-import com.besysoft.TallerMecanico.modelo.enumeradores.TipoEmpleado;
+import com.besysoft.TallerMecanico.modelo.entidades.enumeradores.TipoEmpleado;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

@@ -1,12 +1,10 @@
 package com.besysoft.TallerMecanico.modelo.entidades;
 
-import com.besysoft.TallerMecanico.modelo.enumeradores.TipoOdenTrabajo;
+import com.besysoft.TallerMecanico.modelo.entidades.enumeradores.TipoOdenTrabajo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
-import org.springframework.boot.autoconfigure.web.WebProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;

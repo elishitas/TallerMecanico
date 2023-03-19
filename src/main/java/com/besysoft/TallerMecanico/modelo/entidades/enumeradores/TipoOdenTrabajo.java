@@ -1,4 +1,4 @@
-package com.besysoft.TallerMecanico.modelo.enumeradores;
+package com.besysoft.TallerMecanico.modelo.entidades.enumeradores;
 
 public enum TipoOdenTrabajo {
 
