@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -20,5 +21,8 @@ public class Mecanico extends Persona{
 
     @Column(length = 255, name = "especialidad", nullable = false)
     private String especialidad;
+
+    @OneToMany(mappedBy = "mecanico")
+    private List<ManoDeObra> manoDeObra;
 
 }

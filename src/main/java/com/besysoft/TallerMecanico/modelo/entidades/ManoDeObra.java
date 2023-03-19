@@ -28,12 +28,12 @@ public class ManoDeObra implements Serializable {
     @Column(name = "duracion_hs", nullable = false)
     private Duration duracionHs;
 
-    @OneToOne
-    @JoinColumn(name = "mecanico_id", nullable = false)
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "mecanico_id")
     private Mecanico mecanico;
 
-    @OneToOne
-    @JoinColumn(name = "orden_trabajo_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "orden_trabajo_id")
     private OrdenTrabajo ordenTrabajo;
 
 }

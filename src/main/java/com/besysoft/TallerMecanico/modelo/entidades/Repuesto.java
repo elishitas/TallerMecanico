@@ -22,7 +22,7 @@ public class Repuesto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "repuesto_id")
     private Integer id;
 
     @Column(length = 255, name = "marca", nullable = false)
@@ -34,8 +34,7 @@ public class Repuesto implements Serializable {
     @Column(length = 255, name = "repuesto", nullable = false)
     private String repuesto;
 
-    @Column(length = 255, name = "valor", nullable = false)
-    @Digits(integer = 17,fraction = 2)
+    @Column(name = "valor", precision=19, scale=2)
     private BigDecimal valor;
 
     @OneToMany(mappedBy = "repuesto")

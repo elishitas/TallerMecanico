@@ -47,7 +47,7 @@ public class OrdenTrabajo implements Serializable {
     @Column(name = "forma_pago")
     private String formaPago;
 
-    @Column(name = "importe_total")
+    @Column(name = "importe_total", precision=19, scale=2)
     private BigDecimal importeTotal;
 
     @Column(name = "kilometraje")
@@ -71,11 +71,11 @@ public class OrdenTrabajo implements Serializable {
     @JoinColumn(name = "vehiculo_id")
     private Vehiculo vehiculo;
 
-    //@OneToMany(mappedBy = "ordenTrabajo")
-    //private List<ManoDeObra> manoDeObra;
+    @OneToMany(mappedBy = "ordenTrabajo")
+    private List<ManoDeObra> manoDeObra;
 
-    //@OneToMany(mappedBy = "ordenTrabajo")
-    //private List<DetalleOrdenTrabajo> detalleOrdenesTrabajo;
+    @OneToMany(mappedBy = "ordenTrabajo")
+    private List<DetalleOrdenTrabajo> detalleOrdenesTrabajo;
 
     @PrePersist
     private void antesDePersistir(){

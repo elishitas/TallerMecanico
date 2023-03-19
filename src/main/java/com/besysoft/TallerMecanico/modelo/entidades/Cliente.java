@@ -5,10 +5,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,6 +23,9 @@ public class Cliente extends Persona{
     @Column(length = 15, name = "telefono_linea", nullable = false)
     private String telefonoLinea;
 
-    @ManyToMany(mappedBy = "clientes")
-    private List<Vehiculo> vehiculos;
+    @ManyToMany
+    @JoinTable( name = "cliente_vehiculo",
+            joinColumns = @JoinColumn(name = "cliente_id"),
+            inverseJoinColumns = @JoinColumn(name = "vehiculo_id"))
+    private List<Vehiculo>vehiculos=new ArrayList<>();
 }

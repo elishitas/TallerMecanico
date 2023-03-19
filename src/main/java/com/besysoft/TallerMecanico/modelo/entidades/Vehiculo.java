@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -37,13 +38,6 @@ public class Vehiculo {
     private String patente;
 
     @ManyToMany
-    @JoinTable(
-            name= "cliente_vehiculo",
-            joinColumns = @JoinColumn(name = "cliente_id"),
-            inverseJoinColumns = @JoinColumn (name = "vehiculo_id"))
-    private List<Cliente> clientes;
+    private List<Cliente>clientes=new ArrayList<>();
 
-    @OneToMany
-    @JoinColumn(name = "orden_trabajo_id")
-    private List<OrdenTrabajo> ordenTrabajoId;
 }
