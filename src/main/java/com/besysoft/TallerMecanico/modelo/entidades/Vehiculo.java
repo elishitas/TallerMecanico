@@ -37,7 +37,11 @@ public class Vehiculo {
     @Column(length = 255, name = "patente", nullable = false, unique = true)
     private String patente;
 
-    @ManyToMany
-    private List<Cliente>clientes=new ArrayList<>();
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "cliente_vehiculo",
+            joinColumns = @JoinColumn(name = "cliente_id"),
+            inverseJoinColumns = @JoinColumn(name = "vehiculo_id"))
+    private List<Cliente> clientes;
 
 }

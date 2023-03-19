@@ -23,9 +23,6 @@ public class Cliente extends Persona{
     @Column(length = 15, name = "telefono_linea", nullable = false)
     private String telefonoLinea;
 
-    @ManyToMany
-    @JoinTable( name = "cliente_vehiculo",
-            joinColumns = @JoinColumn(name = "cliente_id"),
-            inverseJoinColumns = @JoinColumn(name = "vehiculo_id"))
-    private List<Vehiculo>vehiculos=new ArrayList<>();
+    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "clientes")
+    private List<Vehiculo> vehiculos;
 }
