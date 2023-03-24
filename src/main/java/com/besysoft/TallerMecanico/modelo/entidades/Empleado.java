@@ -24,4 +24,6 @@ public class Empleado extends Persona{
         super(id, apellido, celular, direccion, nombres);
         this.tipoEmpleado = tipoEmpleado;
     }
+
+
 }
