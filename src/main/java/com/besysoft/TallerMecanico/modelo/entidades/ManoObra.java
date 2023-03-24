@@ -15,7 +15,7 @@ import java.time.Duration;
 @Data
 @EqualsAndHashCode(callSuper=false)
 @Table(name = "mano_obra")
-public class ManoDeObra implements Serializable {
+public class ManoObra implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

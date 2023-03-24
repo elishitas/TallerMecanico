@@ -1,6 +1,6 @@
 package com.besysoft.TallerMecanico.modelo.entidades;
 
-import com.besysoft.TallerMecanico.modelo.entidades.enumeradores.TipoOdenTrabajo;
+import com.besysoft.TallerMecanico.modelo.entidades.enumeradores.TipoOrdenTrabajo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -31,7 +31,7 @@ public class OrdenTrabajo implements Serializable {
     private String detalleFalla;
 
     @Enumerated(EnumType.STRING)
-    private TipoOdenTrabajo estado;
+    private TipoOrdenTrabajo estado;
 
     @Column(name = "fecha_fin_reparacion")
     private LocalDateTime fechaFinReparacion;
@@ -70,7 +70,7 @@ public class OrdenTrabajo implements Serializable {
     private Vehiculo vehiculo;
 
     @OneToMany(mappedBy = "ordenTrabajo")
-    private List<ManoDeObra> manoDeObra;
+    private List<ManoObra> manoObra;
 
     @OneToMany(mappedBy = "ordenTrabajo")
     private List<DetalleOrdenTrabajo> detalleOrdenesTrabajo;
@@ -84,4 +84,5 @@ public class OrdenTrabajo implements Serializable {
     private void antesDeUpdate(){
         this.fechaFinReparacion = LocalDateTime.now();
     }
+
 }

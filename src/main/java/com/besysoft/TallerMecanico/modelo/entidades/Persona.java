@@ -8,8 +8,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 @MappedSuperclass
 public abstract class Persona implements Serializable {
@@ -29,5 +29,6 @@ public abstract class Persona implements Serializable {
 
     @Column(length = 255, name = "nombres", nullable = false)
     private String nombres;
+
 
 }

@@ -25,4 +25,5 @@ public class Cliente extends Persona{
 
     @ManyToMany(fetch = FetchType.LAZY,mappedBy = "clientes")
     private List<Vehiculo> vehiculos;
+
 }

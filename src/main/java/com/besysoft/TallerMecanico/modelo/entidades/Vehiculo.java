@@ -37,6 +37,15 @@ public class Vehiculo {
     @Column(length = 255, name = "patente", nullable = false, unique = true)
     private String patente;
 
+    public Vehiculo(Integer id, Integer anio, String color, String marca, String modelo, String patente) {
+        this.id = id;
+        this.anio = anio;
+        this.color = color;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.patente = patente;
+    }
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "cliente_vehiculo",

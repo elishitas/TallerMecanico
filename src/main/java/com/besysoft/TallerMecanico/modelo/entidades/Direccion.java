@@ -9,6 +9,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

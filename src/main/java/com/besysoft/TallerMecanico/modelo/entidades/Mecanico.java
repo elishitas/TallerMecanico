@@ -23,6 +23,6 @@ public class Mecanico extends Persona{
     private String especialidad;
 
     @OneToMany(mappedBy = "mecanico")
-    private List<ManoDeObra> manoDeObra;
+    private List<ManoObra> manoObra;
 
 }
