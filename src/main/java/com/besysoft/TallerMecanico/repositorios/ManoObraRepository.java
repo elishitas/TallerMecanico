@@ -1,14 +1,14 @@
 package com.besysoft.TallerMecanico.repositorios;
 
-import com.besysoft.TallerMecanico.modelo.entidades.ManoDeObra;
+import com.besysoft.TallerMecanico.modelo.entidades.ManoObra;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface ManoDeObraRepository extends JpaRepository<ManoDeObra, Integer> {
+public interface ManoObraRepository extends JpaRepository<ManoObra, Integer> {
 
-    Optional<ManoDeObra> findByOrdenTrabajo_Id(Long id);
+    Optional<ManoObra> findByOrdenTrabajo_Id(Integer id);
 
-    List<ManoDeObra> findByMecanico_Id(Long id);
+    List<ManoObra> findByMecanico_Id(Integer id);
 }

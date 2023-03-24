@@ -4,9 +4,9 @@ import com.besysoft.TallerMecanico.modelo.entidades.Empleado;
 import com.besysoft.TallerMecanico.modelo.entidades.enumeradores.TipoEmpleado;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
 
-@Repository
+
+
 public interface EmpleadoRepository extends JpaRepository <Empleado, Integer> {
 
     @Query("select e from Empleado e where e.tipoEmpleado = ?1")

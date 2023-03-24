@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface DetalleOrdenTrabajoRepository extends JpaRepository<DetalleOrdenTrabajo, Integer> {
 
-    Optional<DetalleOrdenTrabajo> findByRepuesto_Id(Long id);
+    Optional<DetalleOrdenTrabajo> findByRepuesto_Id(Integer id);
 }
